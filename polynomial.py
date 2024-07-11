@@ -7,6 +7,7 @@ Created on Mon Jul  1 20:35:31 2024
 """
 
 import numpy as np
+from fraction import Fraction
 
 class Polynomial:
     """
@@ -22,17 +23,19 @@ class Polynomial:
             ipt = ipt.getArr()
         elif type(ipt) == np.ndarray:
             if ipt.size == 0:
-                ipt += np.array([0])
+                ipt += np.array([Fraction(0)])
+            ipt = np.array([n if isinstance(n, Fraction) else Fraction(float(n)) for n in ipt])
         elif type(ipt) == list:
             if len(ipt) == 0:
                 ipt = [0]
-            ipt = np.array(ipt)
+            ipt = np.array([Fraction(n) for n in ipt])
         elif type(ipt) == int:
-            ipt = np.array([ipt])
+            ipt = np.array([Fraction(ipt)])
         else:
             raise TypeError('Constructor must be a Polynomial, NumPy Array, List or Number.')
         self.coef = np.array(ipt)
         self.dim = self.coef.size - 1
+        
         
     def __getitem__(self, idx):
         return self.coef[idx]
@@ -89,7 +92,7 @@ class Polynomial:
         return self + (P2 * -1)
         
     def __mul__(self, P2):
-        if type(P2) in [int, float]:
+        if type(P2) in [int, float, Fraction]:
             #Wraps it with a Polynomial object.
             P2 = Polynomial([P2])
         elif P2.getDim() < 0:
@@ -115,6 +118,10 @@ class Polynomial:
         for i in range(self.dim + 1):
             val += self[i] * x ** i
         return val
+    
+if __name__ == '__main__':
+    r1 = Polynomial(7) * Polynomial([2.3, 5.6])
+    print(r1.compute(7))
     
 
         

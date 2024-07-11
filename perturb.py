@@ -23,16 +23,18 @@ So, perturb(2) will return Polynomial([0, 0.5, 0.5])
     
 """
 
+from fraction import Fraction
+
 pn_bank = {}
 
 def comb(x, y):
     #Computes xCy.
-    v = 1
-    for k in range(y):
-        v *= (x/y)
+    v = Fraction(1)
+    while y > 0:
+        v *= Fraction(x, y)
         x -= 1
         y -= 1
-    return int(v)
+    return v
 
 def binom(n):
     #Computes the polynomial coefficients for (x + 1)^n.
@@ -50,12 +52,14 @@ def perturb(n):
     rhs = Polynomial(1)
     for i in range(0, n):
         #Skips avoiding perturb(n + 1) and perturb(n) and triggering infinite recursion.
-        rhs += coefs[i] * perturb(i)
+        rhs += perturb(i) * coefs[i]
     lhs = Polynomial(binom(n + 1)) - rhs
-    lhs *= (1/coefs[n])
+    lhs *= Fraction(1, coefs[n])
     return lhs
 
+
 if __name__ == '__main__':
+
     for i in range(20):
         print('POWER: ' + str(i))
         p = perturb(i)
@@ -67,6 +71,7 @@ if __name__ == '__main__':
         print('SUM of 10th term: ' + str(p.compute(10)))
         print('-------------------------------------------------------')
         print()
+
 
 
 
