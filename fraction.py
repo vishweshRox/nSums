@@ -7,7 +7,6 @@ Created on Wed Jul 10 20:56:13 2024
 """
 
 import math as m
-from fractions import Fraction as f
 
 class Fraction:
     def __init__(self, num, denom=1):
@@ -112,7 +111,5 @@ def floatToFraction(x):
 if __name__ == '__main__':
     n = 26.62986413
     f1 = Fraction(n)
-    f2 = f(n)
     print(f1)
-    print(f2)
         
