@@ -7,6 +7,7 @@ Created on Wed Jul 10 20:56:13 2024
 """
 
 import math as m
+from fractions import Fraction as f
 
 class Fraction:
     def __init__(self, num, denom=1):
@@ -27,8 +28,8 @@ class Fraction:
             gcd = m.gcd(num, denom)
             
             #always in simplest form
-            self.num = int(num / gcd)
-            self.denom = int(denom / gcd)
+            self.num = num // gcd
+            self.denom = denom // gcd
             
         elif type(num) in [int, Fraction] and type(denom) in [int, Fraction]:
             
@@ -100,6 +101,7 @@ class Fraction:
         return Fraction(o_f) * self.inverse()
     
 def floatToFraction(x):
+    #only converts non-recurring decimals, CANNOT handle recurring decimals e.g. 0.333333
     d = 1
     while x % 1 != 0:
         x *= 10
@@ -108,6 +110,9 @@ def floatToFraction(x):
     
 
 if __name__ == '__main__':
-    f1 = Fraction(4/3)
+    n = 26.62986413
+    f1 = Fraction(n)
+    f2 = f(n)
     print(f1)
+    print(f2)
         

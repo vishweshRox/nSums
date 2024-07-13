@@ -120,15 +120,6 @@ class Polynomial:
         return val
     
 if __name__ == '__main__':
-    r1 = Polynomial(7) * Polynomial([2.3, 5.6])
+    r1 = Polynomial([Fraction(0), Fraction(0), Fraction(-3617, 60), Fraction(0), Fraction(595, 3), Fraction(0), Fraction(-11747, 45), Fraction(0), Fraction(1105, 6), Fraction(0), Fraction(-2431, 30), Fraction(0), Fraction(221, 9), Fraction(0), Fraction(-17, 3), Fraction(0), Fraction(17, 12), Fraction(1, 2), Fraction(1, 18)])
+    print(r1)
     print(r1.compute(7))
-    
-
-        
-    
-
-        
-    
-
-
-

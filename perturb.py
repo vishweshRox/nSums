@@ -59,6 +59,24 @@ def perturb(n):
 
 
 if __name__ == '__main__':
+    i = 17
+    print('POWER: ' + str(i))
+    p = perturb(i)
+    print('POLYNOMIAL: ' + str(p))
+    print()
+    print('SUM of 1st term: ' + str(p.compute(1)))
+    print('SUM of 2nd term: ' + str(p.compute(2)))
+    print('SUM of 3rd term: ' + str(p.compute(3)))
+    print('SUM of 4th term: ' + str(p.compute(4)))
+    print('SUM of 5th term: ' + str(p.compute(5)))
+    print('SUM of 6th term: ' + str(p.compute(6)))
+    print('SUM of 7th term: ' + str(p.compute(7)))
+    print('SUM of 8th term: ' + str(p.compute(8)))
+    print('SUM of 9th term: ' + str(p.compute(9)))
+    print('SUM of 10th term: ' + str(p.compute(10)))
+    print('-------------------------------------------------------')
+    print()
+    
 
     for i in range(20):
         print('POWER: ' + str(i))
