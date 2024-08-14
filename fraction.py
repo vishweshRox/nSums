@@ -7,6 +7,7 @@ Created on Wed Jul 10 20:56:13 2024
 """
 
 import math as m
+import sympy
 
 class Fraction:
     def __init__(self, num, denom=1):
@@ -99,8 +100,18 @@ class Fraction:
     def __rtruediv__(self, o_f):
         return Fraction(o_f) * self.inverse()
     
+    def toFloat(self):
+        return self.num / self.denom
+    
 def floatToFraction(x):
     #only converts non-recurring decimals, CANNOT handle recurring decimals e.g. 0.333333
+    #code to handle recurring decimals
+    
+    f = sympy.nsimplify(x)
+    n = sympy.numer(f)
+    d = sympy.denom(f)
+    return Fraction(int(n), int(d))
+    
     d = 1
     while x % 1 != 0:
         x *= 10
